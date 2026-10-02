@@ -1,0 +1,109 @@
+.bookings-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background: #F9F7F7;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* ---------- Table ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+th, td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid #DBE2EF;
+  text-align: center;
+}
+
+th {
+  background: #3F72AF;
+  color: #F9F7F7;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+  background: #DBE2EF;
+  transition: background 0.3s;
+}
+
+tr:hover {
+  background: #C1D3EE;
+  transform: scale(1.01);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ---------- Cancel Button ---------- */
+.cancel-btn {
+  background: #FF6B6B;
+  color: #F9F7F7;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background: #C53030;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* ---------- No Bookings ---------- */
+.no-bookings {
+  text-align: center;
+  font-weight: 500;
+  color: #112D4E;
+  padding: 1rem;
+  background: #DBE2EF;
+  border-radius: 8px;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    display: none;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #DBE2EF;
+  }
+
+  td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 1rem;
+    font-weight: 600;
+    text-align: left;
+  }
+
+  .cancel-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}

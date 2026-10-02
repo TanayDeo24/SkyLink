@@ -1,0 +1,84 @@
+<div class="container">
+  <h3>{{ editingFlight ? 'Edit Flight' : 'Add New Flight' }}</h3>
+  <form (ngSubmit)="onSave()" class="flight-form">
+    <div class="form-group">
+      <label for="flightNumber">Flight Number:</label>
+      <input type="text" id="flightNumber" name="flightNumber" [(ngModel)]="newFlight.flightNumber">
+    </div>
+
+    <div class="form-group">
+      <label for="sourceAirport">Source Airport:</label>
+      <select id="sourceAirport" name="sourceAirportId" [(ngModel)]="newFlight.sourceAirportId" required>
+        <option *ngFor="let airport of airports" [value]="airport.id">
+          {{ airport.name }} ({{ airport.code }})
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="destinationAirport">Destination Airport:</label>
+      <select id="destinationAirport" name="destinationAirportId" [(ngModel)]="newFlight.destinationAirportId" required>
+        <option *ngFor="let airport of airports" [value]="airport.id">
+          {{ airport.name }} ({{ airport.code }})
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="aircraft">Aircraft:</label>
+      <select id="aircraft" name="aircraftId" [(ngModel)]="newFlight.aircraftId" required>
+        <option *ngFor="let craft of aircrafts" [value]="craft.id">{{ craft.model }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="departureTime">Departure Time:</label>
+      <input type="datetime-local" id="departureTime" name="departureTime" [(ngModel)]="newFlight.departureTime">
+    </div>
+
+    <div class="form-group">
+      <label for="arrivalTime">Arrival Time:</label>
+      <input type="datetime-local" id="arrivalTime" name="arrivalTime" [(ngModel)]="newFlight.arrivalTime">
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price:</label>
+      <input type="number" id="price" name="price" [(ngModel)]="newFlight.price">
+    </div>
+
+    <button type="submit">{{ editingFlight ? 'Update Flight' : 'Save Flight' }}</button>
+  </form>
+
+  <hr>
+
+  <h2>Manage Flights</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Flight No.</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Aircraft</th>
+        <th>Departure</th>
+        <th>Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let flight of flights">
+        <td>{{ flight.id }}</td>
+        <td>{{ flight.flightNumber }}</td>
+        <td>{{ flight.sourceAirport.code }}</td>
+        <td>{{ flight.destinationAirport.code }}</td>
+        <td>{{ flight.aircraft.model }}</td>
+        <td>{{ flight.departureTime }}</td>
+        <td>{{ flight.price }}</td>
+        <td>
+          <button class="edit-btn" (click)="onEdit(flight)">Edit</button>
+          <button class="delete-btn" (click)="deleteFlight(flight.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

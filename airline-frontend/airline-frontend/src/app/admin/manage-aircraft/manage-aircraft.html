@@ -1,0 +1,51 @@
+<div class="container">
+  <h3>{{ editingAircraft ? 'Edit Aircraft' : 'Add New Aircraft' }}</h3>
+  <form (ngSubmit)="onSave()" class="aircraft-form">
+    <div class="form-group">
+      <label for="model">Model:</label>
+      <input
+        type="text"
+        id="model"
+        name="model"
+        placeholder="e.g., Boeing 747"
+        [(ngModel)]="newAircraft.model"
+      >
+    </div>
+    <div class="form-group">
+      <label for="capacity">Capacity:</label>
+      <input
+        type="number"
+        id="capacity"
+        name="capacity"
+        placeholder="e.g., 400"
+        [(ngModel)]="newAircraft.capacity"
+      >
+    </div>
+    <button type="submit">{{ editingAircraft ? 'Update Aircraft' : 'Save Aircraft' }}</button>
+  </form>
+
+  <hr>
+
+  <h2>Manage Aircraft</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Model</th>
+        <th>Capacity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let aircraft of aircrafts">
+        <td>{{ aircraft.id }}</td>
+        <td>{{ aircraft.model }}</td>
+        <td>{{ aircraft.capacity }}</td>
+        <td>
+          <button class="edit-btn" (click)="onEdit(aircraft)">Edit</button>
+          <button class="delete-btn" (click)="deleteAircraft(aircraft.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

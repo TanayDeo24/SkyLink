@@ -1,0 +1,27 @@
+<div class="container">
+  <form (ngSubmit)="onRegister()" class="register-form">
+    <h2>Register New Account</h2>
+
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" [(ngModel)]="user.username" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="user.email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" [(ngModel)]="user.password" required>
+    </div>
+
+    <div class="form-group checkbox-group">
+      <input type="checkbox" id="isAdmin" name="registerAsAdmin" [(ngModel)]="user.registerAsAdmin">
+      <label for="isAdmin">Register as Admin</label>
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+</div>

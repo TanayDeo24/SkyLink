@@ -1,0 +1,30 @@
+<nav class="navbar">
+  <div class="nav-left">
+    <a routerLink="/">Search Flights</a>
+
+    <!-- Admin-only links -->
+    <ng-container *ngIf="authService.isAdmin()">
+      <a routerLink="/admin">Manage Airports</a>
+      <a routerLink="/admin/aircrafts">Manage Aircraft</a>
+      <a routerLink="/admin/flights">Manage Flights</a>
+    </ng-container>
+  </div>
+
+  <div class="nav-right">
+    <!-- Show only if NOT logged in -->
+    <ng-container *ngIf="!authService.isLoggedIn()">
+      <a routerLink="/login" class="btn">Login</a>
+      <a routerLink="/register" class="btn">Register</a>
+    </ng-container>
+
+    <!-- Show only if logged in -->
+    <ng-container *ngIf="authService.isLoggedIn()">
+      <a routerLink="/my-bookings">My Bookings</a>
+      <a (click)="authService.logout()" routerLink="/login" class="btn logout">Logout</a>
+    </ng-container>
+  </div>
+</nav>
+
+<hr>
+
+<router-outlet></router-outlet>

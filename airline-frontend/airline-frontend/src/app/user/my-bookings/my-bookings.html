@@ -1,0 +1,34 @@
+<h2>My Bookings</h2>
+
+<div *ngIf="myBookings.length > 0; else noBookings" class="bookings-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Booking ID</th>
+        <th>Flight No.</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Departure</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of myBookings">
+        <td>{{ booking.id }}</td>
+        <td>{{ booking.flight.flightNumber }}</td>
+        <td>{{ booking.flight.sourceAirport.code }}</td>
+        <td>{{ booking.flight.destinationAirport.code }}</td>
+        <td>{{ booking.flight.departureTime }}</td>
+        <td>{{ booking.status }}</td>
+        <td>
+          <button *ngIf="booking.status === 'CONFIRMED'" class="cancel-btn">Cancel</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noBookings>
+  <p class="no-bookings">You have no bookings.</p>
+</ng-template>

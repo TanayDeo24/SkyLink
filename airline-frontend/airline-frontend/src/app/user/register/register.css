@@ -1,0 +1,119 @@
+.container {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #F9F7F7;
+  padding: 2rem;
+}
+
+/* ---------- Form Box ---------- */
+.register-form {
+  background: #DBE2EF;
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  animation: slideFadeIn 0.6s ease-in-out;
+}
+
+/* Form Header */
+.register-form h2 {
+  color: #112D4E;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.register-form h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #3F72AF;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+  transition: width 0.3s;
+}
+
+.register-form h2:hover::after {
+  width: 100px;
+}
+
+/* ---------- Form Groups ---------- */
+.form-group {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #112D4E;
+  font-weight: 500;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 2px solid #3F72AF;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #112D4E;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transform: scale(1.02);
+}
+
+/* Checkbox styling */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: #3F72AF;
+}
+
+/* ---------- Button ---------- */
+button[type="submit"] {
+  width: 100%;
+  padding: 0.8rem;
+  background: #3F72AF;
+  color: #F9F7F7;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background: #112D4E;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+/* ---------- Animations ---------- */
+@keyframes slideFadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 500px) {
+  .register-form {
+    padding: 2rem 1.5rem;
+  }
+}

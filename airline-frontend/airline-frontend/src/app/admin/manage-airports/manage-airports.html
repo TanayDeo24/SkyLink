@@ -1,0 +1,55 @@
+<div class="container">
+  <h3>Add New Airport</h3>
+  <form (ngSubmit)="onSave()" class="airport-form">
+    <div class="form-group">
+      <label for="code">Code:</label>
+      <input type="text" id="code" name="code" placeholder="e.g., LHR" [(ngModel)]="newAirport.code">
+    </div>
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="e.g., Heathrow Airport" [(ngModel)]="newAirport.name">
+    </div>
+    <div class="form-group">
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" placeholder="e.g., London" [(ngModel)]="newAirport.city">
+    </div>
+    <div class="form-group">
+      <label for="country">Country:</label>
+      <input type="text" id="country" name="country" placeholder="e.g., United Kingdom" [(ngModel)]="newAirport.country">
+    </div>
+    <button type="submit">{{ editingAirport ? 'Update Airport' : 'Save Airport' }}</button>
+  </form>
+
+  <hr>
+
+  <h3>
+    Airports List
+    <button (click)="loadAirports()" class="refresh-btn">Refresh</button>
+  </h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Country</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let airport of airports">
+        <td>{{ airport.id }}</td>
+        <td>{{ airport.code }}</td>
+        <td>{{ airport.name }}</td>
+        <td>{{ airport.city }}</td>
+        <td>{{ airport.country }}</td>
+        <td>
+          <button class="edit-btn" (click)="onEdit(airport)">Edit</button>
+          <button class="delete-btn" (click)="deleteAirport(airport.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

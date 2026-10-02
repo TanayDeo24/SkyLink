@@ -1,0 +1,71 @@
+<div class="container">
+  <h2>Search for Flights</h2>
+
+  <!-- Search Form -->
+  <form (ngSubmit)="onSearch()" class="search-form">
+    <div class="form-group">
+      <label for="sourceAirport">From:</label>
+      <select id="sourceAirport" name="sourceAirportId" [(ngModel)]="searchCriteria.sourceAirportId" required>
+        <option value="" disabled>Select an airport</option>
+        <option *ngFor="let airport of airports" [value]="airport.id">
+          {{ airport.name }} ({{ airport.code }})
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="destinationAirport">To:</label>
+      <select id="destinationAirport" name="destinationAirportId" [(ngModel)]="searchCriteria.destinationAirportId" required>
+        <option value="" disabled>Select an airport</option>
+        <option *ngFor="let airport of airports" [value]="airport.id">
+          {{ airport.name }} ({{ airport.code }})
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" [(ngModel)]="searchCriteria.date" required>
+    </div>
+
+    <button type="submit">Search</button>
+  </form>
+
+  <hr>
+
+  <!-- Search Results -->
+  <div *ngIf="searchResults.length > 0" class="results-container">
+    <h3>Search Results</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Flight No.</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Aircraft</th>
+          <th>Departure</th>
+          <th>Price</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let flight of searchResults">
+          <td>{{ flight.flightNumber }}</td>
+          <td>{{ flight.sourceAirport.code }}</td>
+          <td>{{ flight.destinationAirport.code }}</td>
+          <td>{{ flight.aircraft.model }}</td>
+          <td>{{ flight.departureTime }}</td>
+          <td>{{ flight.price | currency }}</td>
+          <td>
+            <button (click)="onBook(flight.id)" class="book-btn">Book Now</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- No Results Message -->
+  <div *ngIf="searchResults.length === 0" class="no-results">
+    <p>No flights found. Try different search criteria.</p>
+  </div>
+</div>
