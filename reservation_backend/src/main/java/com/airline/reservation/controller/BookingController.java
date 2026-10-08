@@ -6,10 +6,13 @@ import com.airline.reservation.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @CrossOrigin("http://localhost:4200")
 @RestController
@@ -27,5 +30,10 @@ public class BookingController {
     public ResponseEntity<Booking> createBooking(@RequestBody BookingRequest bookingRequest) {
         Booking newBooking = bookingService.createBooking(bookingRequest);
         return ResponseEntity.ok(newBooking);
+    }
+
+    @GetMapping("/my")
+    public ResponseEntity<List<Booking>> getMyBookings() {
+        return ResponseEntity.ok(bookingService.getMyBookings());
     }
 }

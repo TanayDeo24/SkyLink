@@ -15,8 +15,7 @@ export class Register { // <-- Standardized name
   user: any = {
     username: '',
     email: '',
-    password: '',
-    registerAsAdmin: false
+    password: ''
   };
 
   constructor(

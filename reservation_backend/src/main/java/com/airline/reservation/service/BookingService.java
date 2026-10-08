@@ -13,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 public class BookingService {
@@ -52,5 +53,12 @@ public class BookingService {
         booking.setStatus(BookingStatus.CONFIRMED);
 
         return bookingRepository.save(booking);
+    }
+
+    public List<Booking> getMyBookings() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return bookingRepository.findByUser(user);
     }
 }

@@ -44,18 +44,9 @@ public class AuthController {
         user.setEmail(registerRequest.getEmail());
         user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
 
-        // ✅ Correct role assignment logic using new property
-        if (registerRequest.isRegisterAsAdmin()) {
-            Role adminRole = roleRepository.findByName("ROLE_ADMIN")
-                    .orElseThrow(() -> new RuntimeException("Error: ROLE_ADMIN is not found."));
-            Role userRole = roleRepository.findByName("ROLE_USER")
-                    .orElseThrow(() -> new RuntimeException("Error: ROLE_USER is not found."));
-            user.setRoles(Set.of(adminRole, userRole));
-        } else {
-            Role userRole = roleRepository.findByName("ROLE_USER")
-                    .orElseThrow(() -> new RuntimeException("Error: ROLE_USER is not found."));
-            user.setRoles(Set.of(userRole));
-        }
+        Role userRole = roleRepository.findByName("ROLE_USER")
+                .orElseThrow(() -> new RuntimeException("Error: ROLE_USER is not found."));
+        user.setRoles(Set.of(userRole));
 
         userRepository.save(user);
 
